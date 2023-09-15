@@ -1,46 +1,52 @@
 package com.asthabansal.sharedpreferencestask
 
+//import android.graphics.Color
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+//import androidx.compose.ui.graphics.Color
+import androidx.core.content.ContextCompat
 import androidx.core.graphics.toColor
 import androidx.recyclerview.widget.RecyclerView
-import org.w3c.dom.NameList
+import com.asthabansal.sharedpreferencestask.AppConstants.Companion.color1
+import com.asthabansal.sharedpreferencestask.AppConstants.Companion.color2
+class ItemListRecycler() : RecyclerView.Adapter<ItemListRecycler.ViewHolder>() {
 
-class ItemListRecycler ( var nameList: ArrayList<colorclass>,var listItems:Int ): RecyclerView.Adapter<ItemListRecycler.ViewHolder>() {
+    var listItems:Int = 0
+    var color1 : String ?= null
+    var color2 : String?=null
 
-    class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        var FirstView = view.findViewById<View>(R.id.firstView)
-        var SecondView = view.findViewById<View>(R.id.secondView)
-
-        //var tvhello = view.findViewById<TextView>(R.id.tvhello)
+    fun updateValues(listItems: Int, color1: String, color2: String){
+        this.color1 = color1
+        this.color2 = color2
+        this.listItems = listItems
+        notifyDataSetChanged()
     }
-    /*override fun getItemId(position: Int): Long {
-        if(position % 2 == 0)
-        {
-            position.toColor().(AppConstants.color1.toString())
-        }
-        else
-        {
-            position.toColor().(AppConstants.color2).toString()
-        }
-        return super.getItemId(position)
-
-    }*/
+    class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
+        var colorView = view.findViewById<TextView>(R.id.firstView)
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerdesign,parent ,false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.firstview,parent ,false)
         return ViewHolder(view)
-        //getItemId(position = 1)
     }
 
     override fun getItemCount(): Int {
-        return listItems
+        return 30
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.FirstView.setBackgroundColor(nameList[position].firstViewColor.toString().toInt())
-        holder.SecondView.setBackgroundColor(nameList[position].firstViewColor.toString().toInt())
+        System.out.println("color1 $color1")
+        if(position%2==0)
+        {
+            holder.colorView.setBackgroundColor(Color.parseColor("#ff0000"))
+        }
+        else
+        {
+            holder.colorView.setBackgroundColor(Color.parseColor(color1))
+        }
 
     }
 }

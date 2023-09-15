@@ -2,6 +2,7 @@ package com.asthabansal.sharedpreferencestask
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.lifecycle.MutableLiveData
 
 
@@ -25,20 +26,22 @@ class SharedPrefs {
     fun saveColor(key:String,value:String){
         editor?.putString(key,value)
         editor?.commit()
+        editor?.apply()
+
     }
 
     fun saveListCount(key:String,value: Int){
         editor?.putInt(key,value)
         editor?.commit()
+        editor?.apply()
     }
 
     fun getColor(key: String):String{
-        return sharedPreferences?.getString(key,"")?:""
+        //colors default value can never be null it has to be something
+        return sharedPreferences?.getString(key,"#ffffff")?:"#ffffff"
     }
 
     fun getListCount(key:String):Int{
         return sharedPreferences?.getInt(key,0)?:0
     }
-
-
 }
