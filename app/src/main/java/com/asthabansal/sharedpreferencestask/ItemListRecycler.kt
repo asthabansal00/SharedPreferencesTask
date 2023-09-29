@@ -16,8 +16,8 @@ import com.asthabansal.sharedpreferencestask.AppConstants.Companion.color2
 class ItemListRecycler() : RecyclerView.Adapter<ItemListRecycler.ViewHolder>() {
 
     var listItems:Int = 0
-    var color1 : String ?= null
-    var color2 : String?=null
+    var color1 = "ffffff"
+    var color2 = "ffffff"
 
     fun updateValues(listItems: Int, color1: String, color2: String){
         this.color1 = color1
@@ -26,22 +26,20 @@ class ItemListRecycler() : RecyclerView.Adapter<ItemListRecycler.ViewHolder>() {
         notifyDataSetChanged()
     }
     class ViewHolder(var view: View) : RecyclerView.ViewHolder(view) {
-        var colorView = view.findViewById<TextView>(R.id.firstView)
+        var colorView = view.findViewById<View>(R.id.firstView)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         var view = LayoutInflater.from(parent.context).inflate(R.layout.firstview,parent ,false)
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return 30
-    }
+    override fun getItemCount() = listItems
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         System.out.println("color1 $color1")
         if(position%2==0)
         {
-            holder.colorView.setBackgroundColor(Color.parseColor("#ff0000"))
+            holder.colorView.setBackgroundColor(Color.parseColor(color2))
         }
         else
         {

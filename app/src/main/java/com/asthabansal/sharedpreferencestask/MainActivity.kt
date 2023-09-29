@@ -106,5 +106,6 @@ class MainActivity : AppCompatActivity() {
         listItems =  Singleton.sharedPreferences?.getListCount(AppConstants.listCount) ?: 0
         adapter.updateValues(listItems, color1, color2)
     }
+
 }
 
